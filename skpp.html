@@ -1,0 +1,312 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>skpp module &#8212; projection-pursuit 0.7 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-skpp">
+<span id="skpp-module"></span><h1>skpp module<a class="headerlink" href="#module-skpp" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="skpp.ProjectionPursuitClassifier">
+<em class="property">class </em><code class="descclassname">skpp.</code><code class="descname">ProjectionPursuitClassifier</code><span class="sig-paren">(</span><em>r=10</em>, <em>fit_type='polyfit'</em>, <em>degree=3</em>, <em>opt_level='high'</em>, <em>example_weights='uniform'</em>, <em>pairwise_loss_matrix=None</em>, <em>eps_stage=0.0001</em>, <em>eps_backfit=0.01</em>, <em>stage_maxiter=100</em>, <em>backfit_maxiter=10</em>, <em>random_state=None</em>, <em>show_plots=False</em>, <em>plot_epoch=50</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/skpp.html#ProjectionPursuitClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#skpp.ProjectionPursuitClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.ClassifierMixin</span></code></p>
+<p>Perform classification with projection pursuit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pairwise_loss_matrix</strong> (<em>array-like of dimension</em><em> (</em><em>n_classes</em><em>, </em><em>n_classes</em><em>)</em><em>, </em><em>default=None</em>) – The adjacency matrix L has entries L[c,k]=l_ck specifying the weight of
+the penalty of predicting the answer is class k when it is actually
+class c. If unspecified, all penalties are considered to have the same
+importance.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#skpp.ProjectionPursuitRegressor" title="skpp.ProjectionPursuitRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectionPursuitRegressor</span></code></a></dt>
+<dd>for definitions of other parameters</dd>
+</dl>
+</div>
+<dl class="method">
+<dt id="skpp.ProjectionPursuitClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/skpp.html#ProjectionPursuitClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#skpp.ProjectionPursuitClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – The training input samples.</li>
+<li><strong>Y</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) or </em><em>(</em><em>n_samples</em><em>, </em><em>n_outputs</em><em>)</em>) – The target values.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – A trained model.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ProjectionPursuitClassifier:</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="skpp.ProjectionPursuitClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/skpp.html#ProjectionPursuitClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#skpp.ProjectionPursuitClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the fitted estimator to make predictions on new data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – The input samples.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>Y</strong> – The result of passing X through the evaluation function, taking
+the argmax of the output, and mapping it back to a class.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array of shape (n_samples)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="skpp.ProjectionPursuitRegressor">
+<em class="property">class </em><code class="descclassname">skpp.</code><code class="descname">ProjectionPursuitRegressor</code><span class="sig-paren">(</span><em>r=10</em>, <em>fit_type='polyfit'</em>, <em>degree=3</em>, <em>opt_level='high'</em>, <em>example_weights='uniform'</em>, <em>out_dim_weights='inverse-variance'</em>, <em>eps_stage=0.0001</em>, <em>eps_backfit=0.01</em>, <em>stage_maxiter=100</em>, <em>backfit_maxiter=10</em>, <em>random_state=None</em>, <em>show_plots=False</em>, <em>plot_epoch=50</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/skpp.html#ProjectionPursuitRegressor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#skpp.ProjectionPursuitRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.TransformerMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.RegressorMixin</span></code></p>
+<p>This class implements the PPR algorithm as detailed in math.pdf.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default=10</em>) – The number of terms in the underlying additive model. The input will be
+put through <cite>r</cite> projections, <cite>r</cite> functions of those projections, and
+then multiplication by <cite>r</cite> output vectors to determine output.</li>
+<li><strong>fit_type</strong> (<em>{'polyfit'</em><em>, </em><em>'spline'}</em><em>, </em><em>default='polyfit'</em>) – The kind of function to fit at each stage.</li>
+<li><strong>degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default=3:</em>) – The degree of polynomials or spline-sections used as the univariate
+approximator between projection and weighted residual targets.</li>
+<li><strong>opt_level</strong> (<em>{'high'</em><em>, </em><em>'medium'</em><em>, </em><em>'low'}</em><em>, </em><em>default='high'</em>) – ‘low’ opt_level will disable backfitting. ‘medium’ backfits previous
+2D functional fits only (not projections). ‘high’ backfits everything.</li>
+<li><strong>example_weights</strong> (<em>string</em><em> or </em><em>array-like of dimension</em><em> (</em><em>n_samples</em><em>,</em><em>)</em><em>, </em><em>default='uniform'</em>) – The relative importances given to training examples when calculating
+loss and solving for parameters.</li>
+<li><strong>out_dim_weights</strong> (<em>string</em><em> or </em><em>array-like</em><em>, </em><em>default='inverse-variance'</em>) – The relative importances given to output dimensions when calculating the
+weighted residual (output of the univariate functions f_j). If all
+dimensions are of the same importance, but outputs are of different
+scales, then using the inverse variance is a good choice.
+Possible values: <cite>‘inverse-variance’</cite>: Divide outputs by their variances,
+<cite>‘uniform’</cite>: Use a vector of ones as the weights, <cite>array</cite>: Provide a custom
+vector of weights of dimension (n_outputs,)</li>
+<li><strong>eps_stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default=0.0001</em>) – The mean squared difference between the predictions of the PPR at
+subsequent iterations of a “stage” (fitting an f, beta pair) must reach
+below this epsilon in order for the stage to be considered converged.</li>
+<li><strong>eps_backfit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default=0.01</em>) – The mean squared difference between the predictions of the PPR at
+subsequent iterations of a “backfit” must reach below this epsilon in
+order for backfitting to be considered converged.</li>
+<li><strong>stage_maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default=100</em>) – If a stage does not converge within this many iterations, end the loop
+and move on. This is useful for divergent cases.</li>
+<li><strong>backfit_maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default=10</em>) – If a backfit does not converge withint this many iterations, end the
+loop and move on. Smaller values may be preferred here since backfit
+iterations are expensive.</li>
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>numpy.RandomState</em><em>, </em><em>default=None</em>) – An optional object with which to seed randomness.</li>
+<li><strong>show_plots</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – Whether to produce plots of projections versus residual variance
+throughout the training process.</li>
+<li><strong>plot_epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default=50:</em>) – If plots are displayed, show them every <cite>plot_epoch</cite> iterations of the
+stage-fitting process.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="skpp.ProjectionPursuitRegressor.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/skpp.html#ProjectionPursuitRegressor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#skpp.ProjectionPursuitRegressor.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – The training input samples.</li>
+<li><strong>Y</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) or </em><em>(</em><em>n_samples</em><em>, </em><em>n_outputs</em><em>)</em>) – The target values.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – A trained model.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#skpp.ProjectionPursuitRegressor" title="skpp.ProjectionPursuitRegressor">ProjectionPursuitRegressor</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="skpp.ProjectionPursuitRegressor.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/skpp.html#ProjectionPursuitRegressor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#skpp.ProjectionPursuitRegressor.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the fitted estimator to make predictions on new data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – The input samples.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>Y</strong> – The result of passing X through the evaluation function.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array of shape (n_samples) or (n_samples, n_outputs)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="skpp.ProjectionPursuitRegressor.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/skpp.html#ProjectionPursuitRegressor.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#skpp.ProjectionPursuitRegressor.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the projections of X through all alpha vectors in the PPR.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> is a p x r matrix with projection vectors in each column, and
+<span class="math notranslate nohighlight">\(X\)</span> is an n x p matrix with examples in each row, so the inner
+product of the two stores projections.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – The input samples.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>Projections</strong> – where r is the hyperparameter given to the constructor, the number
+of terms in the additive model, and the jth column is the projection
+of <span class="math notranslate nohighlight">\(X\)</span> through <span class="math notranslate nohighlight">\(\alpha_j\)</span>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">an array of shape (n_samples, r)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">projection-pursuit</a></h1>
+
+
+
+<p class="blurb">Machine learning through projection pursuit.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pavelkomarov&repo=projection-pursuit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/pavelkomarov/projection-pursuit">
+    <img
+        alt="https://secure.travis-ci.org/pavelkomarov/projection-pursuit.svg?branch=master"
+        src="https://secure.travis-ci.org/pavelkomarov/projection-pursuit.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+    
+
+<p>
+<a href="https://codecov.io/github/pavelkomarov/projection-pursuit">
+    <img
+    alt="https://codecov.io/github/pavelkomarov/projection-pursuit/coverage.svg?branch=master"
+    src="https://codecov.io/github/pavelkomarov/projection-pursuit/coverage.svg?branch=master"
+    />
+</a>
+</p>
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Pavel Komarov.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/skpp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
